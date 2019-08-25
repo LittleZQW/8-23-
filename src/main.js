@@ -13,7 +13,7 @@ Vue.use(ElementUI)
 Vue.config.productionTip = false
 
 new Vue({
-  // 使用router
+  // 挂载router
   router,
   render: h => h(App)
 }).$mount('#app')
