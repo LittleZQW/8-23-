@@ -68,7 +68,15 @@ export default {
       this.$refs.loginForm.validate((valid) => {
         if (valid) {
           // 校验成功 调用登录接口
-
+          this.$http.post('http://ttapi.research.itcast.cn/mp/v1_0/authorizations', this.loginForm)
+            .then(res => {
+              // 代表成功
+              this.$router.push('/')
+            })
+            .catch(() => {
+              // 代表失败, 失败给提示
+              this.$message.error('手机号或验证码错误')
+            })
         }
       })
     }
