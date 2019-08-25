@@ -3,11 +3,11 @@
     <!-- 卡片 ElementUI的组件 -->
     <el-card class="my-card">
       <img src="../../assets/images/logo_index.png" alt />
-      <el-form :model="loginForm">
-        <el-form-item>
+      <el-form :model="loginForm" :rules="loginRules">
+        <el-form-item prop='mobile'>
           <el-input v-model="loginForm.mobile" placeholder="请输入手机号"></el-input>
         </el-form-item>
-        <el-form-item>
+        <el-form-item prop="code">
           <el-input
             v-model="loginForm.code"
             placeholder="请输入验证码"
@@ -28,9 +28,21 @@
 export default {
   data () {
     return {
+      // 表单数据对象
       loginForm: {
         mobile: '',
         code: ''
+      },
+      // 表单校验规则对象
+      loginRules: {
+        // 给字段加校验规则(多个)
+        mobile: [
+          { required: true, message: '请输入手机号', trigger: 'blur' }
+        ],
+        code: [
+          { required: true, message: '请输入验证码', trigger: 'blur' },
+          { len: 6, message: '验证码长度是6位', trigger: 'blur' }
+        ]
       }
     }
   }
